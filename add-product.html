@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product - Naveed Store</title>
+    <link rel="stylesheet" href="admin.css">
+    <style>
+        .form-container {
+            max-width: 700px;
+            margin: 40px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px #ddd;
+        }
+        .form-container h2 {
+            margin-bottom: 25px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .add-button {
+            background: #087de8;
+            color: white;
+            border: none;
+            padding: 13px 25px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .add-button:hover {
+            background: #06233f;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            color: #087de8;
+            text-decoration: none;
+        }
+
+        #message {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <main class="main" style="margin-left: 0;">
+
+        <header class="topbar">
+
+            <div>
+                <h1>Add New Product</h1>
+                <p>Naveed Store Admin Panel</p>
+            </div>
+
+            <div class="admin-profile">
+                👤 Admin
+            </div>
+
+        </header>
+
+
+        <div class="form-container">
+
+            <h2>📦 Product Information</h2>
+
+            <form onsubmit="addProduct(event)">
+
+                <div class="form-group">
+
+                    <label>Product Name</label>
+
+                    <input
+                        type="text"
+                        id="productName"
+                        placeholder="Enter product name"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Price (Rs.)</label>
+
+                    <input
+                        type="number"
+                        id="productPrice"
+                        placeholder="Enter price"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Category</label>
+
+                    <select id="productCategory" required>
+
+                        <option value="">
+                            Select Category
+                        </option>
+
+                        <option>Mobile</option>
+                        <option>Laptop</option>
+                        <option>Headphones</option>
+                        <option>Smart Watch</option>
+                        <option>Shoes</option>
+                        <option>Bags</option>
+                        <option>Other</option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Product Description</label>
+
+                    <textarea
+                        id="productDescription"
+                        placeholder="Enter product description"
+                        required
+                    ></textarea>
+
+                </div>
+
+
+                <button type="submit" class="add-button">
+                    ➕ Add Product
+                </button>
+
+                <p id="message"></p>
+
+            </form>
+
+
+            <a href="admin.html" class="back-button">
+                ← Back to Dashboard
+            </a>
+
+        </div>
+
+    </main>
+
+
+    <script>
+
+        function addProduct(event) {
+
+            event.preventDefault();
+
+            let name =
+                document.getElementById("productName").value;
+
+            let price =
+                document.getElementById("productPrice").value;
+
+            let category =
+                document.getElementById("productCategory").value;
+
+            let description =
+                document.getElementById("productDescription").value;
+
+
+            let products =
+                JSON.parse(localStorage.getItem("products")) || [];
+
+
+            products.push({
+
+                id: Date.now(),
+
+                name: name,
+
+                price: Number(price),
+
+                category: category,
+
+                description: description
+
+            });
+
+
+            localStorage.setItem(
+                "products",
+                JSON.stringify(products)
+            );
+
+
+            document.getElementById("message").innerText =
+                "✅ Product added successfully!";
+
+
+            document.querySelector("form").reset();
+
+        }
+
+    </script>
+
+</body>
+
+</html>
