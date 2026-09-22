@@ -1,0 +1,554 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Naveed Store</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+<!-- ================= SIDEBAR ================= -->
+<aside class="sidebar">
+    <div class="admin-logo">
+        🛒 Naveed Store
+    </div>
+    <p class="admin-title">
+        ADMIN PANEL
+    </p>
+
+    <a href="#" class="active">
+        📊 Dashboard
+    </a>
+    <a href="manage-products.html">
+        📦 Products
+    </a>
+    <a href="#">
+        🛒 Orders
+    </a>
+    <a href="#">
+        👥 Customers
+    </a>
+    <a href="#">
+        💰 Sales
+    </a>
+    <a href="#">
+        ⚙️ Settings
+    </a>
+
+
+    <a href="index.html">
+        🏠 View Store
+    </a>
+
+
+    <a href="admin-login.html">
+        🚪 Logout
+    </a>
+
+</aside>
+
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="main">
+
+
+    <!-- TOP BAR -->
+
+    <header class="topbar">
+
+        <div>
+
+            <h1>
+                Dashboard
+            </h1>
+
+            <p>
+                Welcome back, Admin 👋
+            </p>
+
+        </div>
+
+
+        <div class="admin-profile">
+            👤 Admin
+        </div>
+
+    </header>
+
+
+
+    <!-- ================= STATISTICS ================= -->
+
+    <section class="stats">
+
+
+        <!-- SALES -->
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                💰
+            </div>
+
+            <div>
+
+                <p>
+                    Total Sales
+                </p>
+
+                <h2>
+                    Rs. 485,000
+                </h2>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ORDERS -->
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🛒
+            </div>
+
+            <div>
+
+                <p>
+                    Total Orders
+                </p>
+
+                <h2>
+                    125
+                </h2>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- PRODUCTS -->
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                📦
+            </div>
+
+            <div>
+
+                <p>
+                    Products
+                </p>
+
+                <h2 id="productCount">
+                    0
+                </h2>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- CUSTOMERS -->
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                👥
+            </div>
+
+            <div>
+
+                <p>
+                    Customers
+                </p>
+
+                <h2>
+                    320
+                </h2>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- ================= DASHBOARD GRID ================= -->
+
+    <section class="dashboard-grid">
+
+
+        <!-- SALES OVERVIEW -->
+
+        <div class="panel">
+
+            <div class="panel-header">
+
+                <h2>
+                    Sales Overview
+                </h2>
+
+
+                <select>
+
+                    <option>
+                        This Month
+                    </option>
+
+                    <option>
+                        Last Month
+                    </option>
+
+                    <option>
+                        This Year
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="chart">
+
+
+                <div class="bar"
+                    style="height:40%;">
+
+                    <span>
+                        Jan
+                    </span>
+
+                </div>
+
+
+
+                <div class="bar"
+                    style="height:65%;">
+
+                    <span>
+                        Feb
+                    </span>
+
+                </div>
+
+
+
+                <div class="bar"
+                    style="height:50%;">
+
+                    <span>
+                        Mar
+                    </span>
+
+                </div>
+
+
+
+                <div class="bar"
+                    style="height:80%;">
+
+                    <span>
+                        Apr
+                    </span>
+
+                </div>
+
+
+
+                <div class="bar"
+                    style="height:60%;">
+
+                    <span>
+                        May
+                    </span>
+
+                </div>
+
+
+
+                <div class="bar"
+                    style="height:90%;">
+
+                    <span>
+                        Jun
+                    </span>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- QUICK ACTIONS -->
+
+        <div class="panel">
+
+            <h2>
+                Quick Actions
+            </h2>
+
+
+            <div class="quick-actions">
+
+
+                <button
+                    onclick="window.location.href='add-product.html'">
+
+                    ➕ Add Product
+
+                </button>
+
+
+
+                <button
+                    onclick="window.location.href='manage-products.html'">
+
+                    📦 Manage Products
+
+                </button>
+
+
+
+                <button
+                    onclick="alert('Orders page coming soon!')">
+
+                    🛒 View Orders
+
+                </button>
+
+
+
+                <button
+                    onclick="alert('Customers page coming soon!')">
+
+                    👥 Customers
+
+                </button>
+
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- ================= RECENT ORDERS ================= -->
+
+    <section class="panel orders">
+
+
+        <div class="panel-header">
+
+            <h2>
+                Recent Orders
+            </h2>
+
+
+            <button
+                class="view-button"
+                onclick="alert('Orders page coming soon!')">
+
+                View All
+
+            </button>
+
+        </div>
+
+
+
+        <div class="table-container">
+
+
+            <table>
+
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Order ID
+                        </th>
+
+                        <th>
+                            Customer
+                        </th>
+
+                        <th>
+                            Product
+                        </th>
+
+                        <th>
+                            Amount
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+
+                <tbody>
+
+
+                    <tr>
+
+                        <td>
+                            #1001
+                        </td>
+
+                        <td>
+                            Ali Khan
+                        </td>
+
+                        <td>
+                            iPhone 15
+                        </td>
+
+                        <td>
+                            Rs. 149,999
+                        </td>
+
+                        <td>
+
+                            <span class="status delivered">
+                                Delivered
+                            </span>
+
+                        </td>
+
+                    </tr>
+
+
+
+                    <tr>
+
+                        <td>
+                            #1002
+                        </td>
+
+                        <td>
+                            Ahmad
+                        </td>
+
+                        <td>
+                            HP Laptop
+                        </td>
+
+                        <td>
+                            Rs. 125,000
+                        </td>
+
+                        <td>
+
+                            <span class="status pending">
+                                Pending
+                            </span>
+
+                        </td>
+
+                    </tr>
+
+
+
+                    <tr>
+
+                        <td>
+                            #1003
+                        </td>
+
+                        <td>
+                            Usman
+                        </td>
+
+                        <td>
+                            AirPods Pro
+                        </td>
+
+                        <td>
+                            Rs. 32,999
+                        </td>
+
+                        <td>
+
+                            <span class="status shipped">
+                                Shipped
+                            </span>
+
+                        </td>
+
+                    </tr>
+
+
+                </tbody>
+
+
+            </table>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <p>
+            © 2026 Naveed Store Admin Panel
+        </p>
+
+    </footer>
+
+
+</main>
+
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+
+    // Count products added from Admin
+
+    let products =
+        JSON.parse(
+            localStorage.getItem("products")
+        ) || [];
+
+
+    document.getElementById(
+        "productCount"
+    ).innerText = products.length;
+
+
+</script>
+
+
+</body>
+
+</html>
