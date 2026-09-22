@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naveed Store</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <div class="logo">🛒 Naveed Store</div>
+
+   <a href="admin-login.html">🔐 Admin</a>
+        <a href="#">Home</a>
+        <a href="#products">Products</a>
+        <a href="#categories">Categories</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="icons">❤️ 🛒 👤</div>
+</header>
+
+<section class="hero">
+    <div>
+        <h1>Welcome to <span>Naveed Store</span></h1>
+        <p>Discover quality products at affordable prices.</p>
+        <button onclick="shopNow()">Shop Now →</button>
+    </div>
+</section>
+
+<section id="categories">
+    <h2>Shop by Category</h2>
+
+    <div class="categories">
+        <div>📱<br><b>Mobiles</b></div>
+        <div>💻<br><b>Laptops</b></div>
+        <div>👕<br><b>Fashion</b></div>
+        <div>👟<br><b>Shoes</b></div>
+        <div>⌚<br><b>Accessories</b></div>
+    </div>
+</section>
+
+<section id="products">
+    <h2>Featured Products</h2>
+
+    <div class="products">
+
+        <div class="product">
+            <div class="product-image">📱</div>
+            <h3>Smart Phone</h3>
+            <p class="price">Rs. 84,999</p>
+            <p>⭐ 4.5 (120 reviews)</p>
+            <button onclick="addCart('Smart Phone')">Add to Cart</button>
+        </div>
+
+        <div class="product">
+            <div class="product-image">💻</div>
+            <h3>HP Laptop</h3>
+            <p class="price">Rs. 125,000</p>
+            <p>⭐ 4.7 (98 reviews)</p>
+            <button onclick="addCart('HP Laptop')">Add to Cart</button>
+        </div>
+
+        <div class="product">
+            <div class="product-image">🎧</div>
+            <h3>AirPods</h3>
+            <p class="price">Rs. 32,999</p>
+            <p>⭐ 4.6 (200 reviews)</p>
+            <button onclick="addCart('AirPods')">Add to Cart</button>
+        </div>
+
+        <div class="product">
+            <div class="product-image">⌚</div>
+            <h3>Smart Watch</h3>
+            <p class="price">Rs. 5,999</p>
+            <p>⭐ 4.3 (98 reviews)</p>
+            <button onclick="addCart('Smart Watch')">Add to Cart</button>
+        </div>
+
+    </div>
+</section>
+
+<section id="about" class="about">
+    <h2>About Naveed Store</h2>
+    <p>
+        Welcome to Naveed Store. We provide quality products
+        with affordable prices and excellent customer service.
+    </p>
+</section>
+
+<footer id="contact">
+    <h3>Naveed Store</h3>
+    <p>© 2026 Naveed Store. All Rights Reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
