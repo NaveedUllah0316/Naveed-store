@@ -1,0 +1,654 @@
+ <!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Manage Products - Naveed Store</title>
+
+    <link rel="stylesheet" href="admin.css">
+
+    <style>
+
+        .manage-page {
+            padding: 30px;
+        }
+
+        .product-table {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px #ddd;
+            overflow-x: auto;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: #087de8;
+            font-weight: bold;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 14px;
+            border-bottom: 1px solid #eee;
+            text-align: left;
+        }
+
+        th {
+            background: #f5f7fa;
+        }
+
+        .edit-btn {
+            background: #087de8;
+            color: white;
+            border: none;
+            padding: 8px 13px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+
+        .edit-btn:hover {
+            background: #06233f;
+        }
+
+        .delete-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 8px 13px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .delete-btn:hover {
+            background: #a71d2a;
+        }
+
+        .empty {
+            text-align: center;
+            padding: 30px;
+            color: #777;
+        }
+
+        .edit-box {
+            display: none;
+            background: #f5f7fa;
+            padding: 25px;
+            margin-top: 25px;
+            border-radius: 10px;
+        }
+
+        .edit-box h2 {
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 7px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 11px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        .form-group textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        .save-btn {
+            background: #198754;
+            color: white;
+            border: none;
+            padding: 11px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .cancel-btn {
+            background: #777;
+            color: white;
+            border: none;
+            padding: 11px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-left: 8px;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<main class="main" style="margin-left: 0;">
+
+
+    <!-- HEADER -->
+
+    <header class="topbar">
+
+        <div>
+
+            <h1>
+                📦 Manage Products
+            </h1>
+
+            <p>
+                Naveed Store Admin Panel
+            </p>
+
+        </div>
+
+
+        <div class="admin-profile">
+            👤 Admin
+        </div>
+
+    </header>
+
+
+
+    <!-- PRODUCTS -->
+
+    <section class="manage-page">
+
+
+        <a href="admin.html" class="back-btn">
+            ← Back to Dashboard
+        </a>
+
+
+
+        <div class="product-table">
+
+            <h2>
+                All Products
+            </h2>
+
+            <br>
+
+
+            <div id="productList"></div>
+
+
+
+            <!-- EDIT FORM -->
+
+            <div id="editBox" class="edit-box">
+
+                <h2>
+                    ✏️ Edit Product
+                </h2>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Product Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="editName"
+                    >
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Price (Rs.)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="editPrice"
+                    >
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Category
+                    </label>
+
+                    <select id="editCategory">
+
+                        <option value="Mobile">
+                            Mobile
+                        </option>
+
+                        <option value="Laptop">
+                            Laptop
+                        </option>
+
+                        <option value="Headphones">
+                            Headphones
+                        </option>
+
+                        <option value="Smart Watch">
+                            Smart Watch
+                        </option>
+
+                        <option value="Shoes">
+                            Shoes
+                        </option>
+
+                        <option value="Bags">
+                            Bags
+                        </option>
+
+                        <option value="Other">
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Description
+                    </label>
+
+                    <textarea
+                        id="editDescription">
+                    </textarea>
+
+                </div>
+
+
+
+                <button
+                    class="save-btn"
+                    onclick="saveEdit()">
+
+                    💾 Save Changes
+
+                </button>
+
+
+
+                <button
+                    class="cancel-btn"
+                    onclick="cancelEdit()">
+
+                    Cancel
+
+                </button>
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+</main>
+
+
+
+<script>
+
+
+let products =
+    JSON.parse(
+        localStorage.getItem("products")
+    ) || [];
+
+
+let editIndex = -1;
+
+
+
+// DISPLAY PRODUCTS
+
+function displayProducts() {
+
+    let productList =
+        document.getElementById(
+            "productList"
+        );
+
+
+    if (products.length === 0) {
+
+        productList.innerHTML = `
+
+            <div class="empty">
+
+                <h3>
+                    📦 No products found
+                </h3>
+
+                <p>
+                    Add a product from the Admin Dashboard.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+
+    let html = `
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        #
+                    </th>
+
+                    <th>
+                        Product
+                    </th>
+
+                    <th>
+                        Price
+                    </th>
+
+                    <th>
+                        Category
+                    </th>
+
+                    <th>
+                        Action
+                    </th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+    `;
+
+
+
+    products.forEach(
+        (product, index) => {
+
+        html += `
+
+            <tr>
+
+                <td>
+                    ${index + 1}
+                </td>
+
+                <td>
+                    ${product.name}
+                </td>
+
+                <td>
+                    Rs.
+                    ${Number(product.price)
+                        .toLocaleString()}
+                </td>
+
+                <td>
+                    ${product.category}
+                </td>
+
+                <td>
+
+
+                    <button
+                        class="edit-btn"
+                        onclick="editProduct(${index})">
+
+                        ✏️ Edit
+
+                    </button>
+
+
+
+                    <button
+                        class="delete-btn"
+                        onclick="deleteProduct(${index})">
+
+                        🗑️ Delete
+
+                    </button>
+
+
+                </td>
+
+            </tr>
+
+        `;
+
+    });
+
+
+
+    html += `
+
+            </tbody>
+
+        </table>
+
+    `;
+
+
+    productList.innerHTML = html;
+
+}
+
+
+
+// EDIT PRODUCT
+
+function editProduct(index) {
+
+    editIndex = index;
+
+
+    let product =
+        products[index];
+
+
+    document.getElementById(
+        "editName"
+    ).value = product.name;
+
+
+    document.getElementById(
+        "editPrice"
+    ).value = product.price;
+
+
+    document.getElementById(
+        "editCategory"
+    ).value = product.category;
+
+
+    document.getElementById(
+        "editDescription"
+    ).value = product.description;
+
+
+    document.getElementById(
+        "editBox"
+    ).style.display = "block";
+
+
+    document.getElementById(
+        "editBox"
+    ).scrollIntoView({
+        behavior: "smooth"
+    });
+
+}
+
+
+
+// SAVE EDIT
+
+function saveEdit() {
+
+    if (editIndex === -1) {
+        return;
+    }
+
+
+    products[editIndex].name =
+        document.getElementById(
+            "editName"
+        ).value;
+
+
+    products[editIndex].price =
+        Number(
+            document.getElementById(
+                "editPrice"
+            ).value
+        );
+
+
+    products[editIndex].category =
+        document.getElementById(
+            "editCategory"
+        ).value;
+
+
+    products[editIndex].description =
+        document.getElementById(
+            "editDescription"
+        ).value.trim();
+
+
+    localStorage.setItem(
+        "products",
+        JSON.stringify(products)
+    );
+
+
+    document.getElementById(
+        "editBox"
+    ).style.display = "none";
+
+
+    editIndex = -1;
+
+
+    displayProducts();
+
+
+    alert(
+        "✅ Product updated successfully!"
+    );
+
+}
+
+
+
+// CANCEL EDIT
+
+function cancelEdit() {
+
+    editIndex = -1;
+
+    document.getElementById(
+        "editBox"
+    ).style.display = "none";
+
+}
+
+
+
+// DELETE PRODUCT
+
+function deleteProduct(index) {
+
+    let productName =
+        products[index].name;
+
+
+    let confirmDelete =
+        confirm(
+            "Delete " +
+            productName +
+            "?"
+        );
+
+
+    if (confirmDelete) {
+
+        products.splice(index, 1);
+
+
+        localStorage.setItem(
+            "products",
+            JSON.stringify(products)
+        );
+
+
+        displayProducts();
+
+
+        alert(
+            "✅ Product deleted successfully!"
+        );
+
+    }
+
+}
+
+
+
+// START
+
+displayProducts();
+
+
+</script>
+
+
+</body>
+
+</html>
