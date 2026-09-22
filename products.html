@@ -1,0 +1,256 @@
+ <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Products - Naveed Store</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        🛒 Naveed Store
+    </div>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="cart.html">Cart 🛒</a>
+        <a href="admin-login.html">🔐 Admin</a>
+        <a href="index.html#categories">Categories</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact">Contact</a>
+    </nav>
+
+</header>
+
+
+<section class="products-page">
+
+    <h1>Our Products 🛍️</h1>
+
+    <p>
+        Welcome to Naveed Store — Choose your favorite products.
+    </p>
+
+    <div class="products" id="productsContainer">
+
+
+        <!-- ORIGINAL PRODUCTS -->
+
+        <div class="product">
+
+            <div class="product-image">📱</div>
+
+            <h3>Samsung Galaxy A55</h3>
+
+            <p class="price">Rs. 84,999</p>
+
+            <p>⭐ 4.5</p>
+
+            <button onclick="addCart('Samsung Galaxy A55', 84999)">
+                Add to Cart 🛒
+            </button>
+
+        </div>
+
+
+        <div class="product">
+
+            <div class="product-image">📱</div>
+
+            <h3>iPhone 15</h3>
+
+            <p class="price">Rs. 149,999</p>
+
+            <p>⭐ 4.8</p>
+
+            <button onclick="addCart('iPhone 15', 149999)">
+                Add to Cart 🛒
+            </button>
+
+        </div>
+
+
+        <div class="product">
+
+            <div class="product-image">💻</div>
+
+            <h3>HP Laptop</h3>
+
+            <p class="price">Rs. 125,000</p>
+
+            <p>⭐ 4.7</p>
+
+            <button onclick="addCart('HP Laptop', 125000)">
+                Add to Cart 🛒
+            </button>
+
+        </div>
+
+
+        <div class="product">
+
+            <div class="product-image">💻</div>
+
+            <h3>MacBook Air</h3>
+
+            <p class="price">Rs. 199,999</p>
+
+            <p>⭐ 4.9</p>
+
+            <button onclick="addCart('MacBook Air', 199999)">
+                Add to Cart 🛒
+            </button>
+
+        </div>
+
+
+        <div class="product">
+
+            <div class="product-image">🎧</div>
+
+            <h3>AirPods Pro</h3>
+
+            <p class="price">Rs. 32,999</p>
+
+            <p>⭐ 4.7</p>
+
+            <button onclick="addCart('AirPods Pro', 32999)">
+                Add to Cart 🛒
+            </button>
+
+        </div>
+
+
+        <div class="product">
+
+            <div class="product-image">⌚</div>
+
+            <h3>Smart Watch</h3>
+
+            <p class="price">Rs. 5,999</p>
+
+            <p>⭐ 4.3</p>
+
+            <button onclick="addCart('Smart Watch', 5999)">
+                Add to Cart 🛒
+            </button>
+
+        </div>
+
+
+        <div class="product">
+
+            <div class="product-image">👟</div>
+
+            <h3>Nike Running Shoes</h3>
+
+            <p class="price">Rs. 8,999</p>
+
+            <p>⭐ 4.6</p>
+
+            <button onclick="addCart('Nike Running Shoes', 8999)">
+                Add to Cart 🛒
+            </button>
+
+        </div>
+
+
+        <div class="product">
+
+            <div class="product-image">🎒</div>
+
+            <h3>Travel Backpack</h3>
+
+            <p class="price">Rs. 4,500</p>
+
+            <p>⭐ 4.4</p>
+
+            <button onclick="addCart('Travel Backpack', 4500)">
+                Add to Cart 🛒
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<footer>
+
+    <h3>🛒 Naveed Store</h3>
+
+    <p>
+        © 2026 Naveed Store. All Rights Reserved.
+    </p>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+
+<script>
+
+    // Get products added from Admin
+
+    let adminProducts =
+        JSON.parse(localStorage.getItem("products")) || [];
+
+    let productsContainer =
+        document.getElementById("productsContainer");
+
+
+    // Display admin products
+
+    adminProducts.forEach(product => {
+
+        productsContainer.innerHTML += `
+
+            <div class="product">
+
+                <div class="product-image">
+                    📦
+                </div>
+
+                <h3>${product.name}</h3>
+
+                <p class="price">
+                    Rs. ${product.price.toLocaleString()}
+                </p>
+
+                <p>
+                    ${product.category}
+                </p>
+
+                <p>
+                    ${product.description}
+                </p>
+
+                <button
+                    onclick="addCart('${product.name}', ${product.price})">
+
+                    Add to Cart 🛒
+
+                </button>
+
+            </div>
+
+        `;
+
+    });
+
+</script>
+
+
+</body>
+
+</html>
